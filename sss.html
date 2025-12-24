@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Morning Magic - Serif Edition</title>
+    <style>
+        /* Modern Animated Background */
+        body {
+            /* Classic Serif Font Stack */
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container with Serif elegance */
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .sun {
+            width: 70px;
+            height: 70px;
+            background: #fbc02d;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #fbc02d;
+            margin: 0 auto 25px;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        h1 { 
+            font-weight: bold;
+            color: #444; 
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        input {
+            padding: 12px 25px;
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 5px; /* Squareish but soft for serif look */
+            outline: none;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            background: #fff;
+        }
+
+        button {
+            padding: 12px 40px;
+            background: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover { 
+            background: #000;
+            letter-spacing: 4px;
+        }
+
+        /* The Serif Greeting Card */
+        .card {
+            display: none;
+            background: #fff;
+            padding: 60px;
+            border-radius: 5px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: fadeIn 1.2s ease-in-out;
+            z-index: 10;
+            border: 15px double #f1f1f1; /* Royal double border */
+            max-width: 400px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .card h1 { color: #2c3e50; margin: 0; font-size: 3rem; }
+        .card h2 { font-style: italic; color: #e74c3c; margin-top: 10px; }
+        .card p { font-size: 1.3rem; line-height: 1.6; color: #555; }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="sun"></div>
+        <h1>Good Morning</h1>
+        <p style="font-style: italic;">"A new day, a new beginning"</p>
+        <input type="text" id="userName" placeholder="Enter Name">
+        <br>
+        <button onclick="showMagic()">Open Card</button>
+    </div>
+
+    <div id="greetingCard" class="card">
+        <h1>Good Morning</h1>
+        <h2 id="welcomeName"></h2>
+        <hr style="width: 50px; border: 1px solid #eee; margin: 20px auto;">
+        <p>May your morning be as <i>bright</i> as your soul and your day be filled with <i>serenity</i>.</p>
+        <p style="font-size: 30px;">☕ 📜 🕊️</p>
+        <button onclick="location.reload()" style="background:none; color:#999; border:1px solid #eee; font-size:12px;">Close</button>
+    </div>
+
+    <script>
+        function showMagic() {
+            var name = document.getElementById("userName").value;
+            if(name.trim() !== "") {
+                document.getElementById("mainContainer").style.display = "none";
+                document.getElementById("welcomeName").innerText = name;
+                document.getElementById("greetingCard").style.display = "block";
+                dropConfetti();
+            } else {
+                alert("Kindly enter your name.");
+            }
+        }
+
+        function dropConfetti() {
+            for(let i=0; i<40; i++) {
+                let confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.top = "-5vh";
+                confetti.style.backgroundColor = "hsl(" + Math.random() * 360 + ", 50%, 70%)";
+                confetti.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+
+</body>
+</html>
